@@ -246,6 +246,44 @@ main { padding: 56px 0 80px; }
 
 .section-grid .card { margin-bottom: 0; }
 
+/* Safety section — two-column lawyer-comfort layout, slightly different visual
+   weight than the value-prop section-grid so it reads as a separate "trust"
+   block rather than another feature list. */
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+  margin: 28px 0 8px;
+}
+.safety-item {
+  background: var(--vox-card);
+  border: 1px solid var(--vox-border);
+  border-left: 3px solid var(--vox-gold);
+  border-radius: 8px;
+  padding: 22px 26px;
+}
+.safety-item h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+  font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
+  font-weight: 600;
+}
+.safety-item p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--vox-ink-soft);
+  line-height: 1.55;
+}
+.safety-item p strong {
+  color: var(--vox-ink);
+  font-weight: 600;
+}
+@media (max-width: 640px) {
+  .safety-item { padding: 18px 22px; }
+  .safety-item h3 { font-size: 17px; }
+  .safety-item p { font-size: 15px; }
+}
+
 /* ---- FORMS ---- */
 
 form.signup {
