@@ -1,0 +1,355 @@
+/* ----------------------------------------------------------------
+   Voxhora marketing site — global styles
+   Brand: voxPaper #faf8f3 background, voxInk #1a2f4a body,
+          voxGold #b08d57 accent, voxInkSoft #4d5a6e secondary.
+   Typography: Lora (Charter-feel) for headlines, system sans for body.
+   ---------------------------------------------------------------- */
+
+:root {
+  --vox-paper: #faf8f3;
+  --vox-ink: #1a2f4a;
+  --vox-ink-soft: #4d5a6e;
+  --vox-gold: #b08d57;
+  --vox-gold-warm: #c9a872;
+  --vox-card: #ffffff;
+  --vox-border: rgba(26, 47, 74, 0.12);
+  --vox-shadow: 0 1px 3px rgba(26, 47, 74, 0.06), 0 1px 2px rgba(26, 47, 74, 0.04);
+  --max-w: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--vox-paper);
+  color: var(--vox-ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Lora", "Charter", "Iowan Old Style", "Georgia", serif;
+  font-weight: 600;
+  color: var(--vox-ink);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 44px; line-height: 1.15; margin: 0 0 18px; }
+h2 { font-size: 30px; line-height: 1.2; margin: 48px 0 16px; }
+h3 { font-size: 22px; line-height: 1.3; margin: 32px 0 10px; }
+
+p { margin: 0 0 16px; max-width: 65ch; }
+
+a {
+  color: var(--vox-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--vox-gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+a:hover { text-decoration-color: var(--vox-ink); }
+
+ul { padding-left: 22px; margin: 0 0 16px; }
+li { margin-bottom: 8px; }
+
+code, pre {
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  background: rgba(26, 47, 74, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+pre {
+  padding: 16px 20px;
+  overflow-x: auto;
+  line-height: 1.5;
+  border-radius: 8px;
+}
+pre code { padding: 0; background: none; }
+
+/* ---- LAYOUT ---- */
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+header.site-header {
+  border-bottom: 1px solid var(--vox-border);
+  padding: 22px 0;
+  background: var(--vox-paper);
+}
+header.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--vox-ink);
+}
+.brand .v-mark {
+  font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--vox-gold);
+  letter-spacing: -0.02em;
+}
+.brand .v-word {
+  font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+nav.site-nav {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+nav.site-nav a {
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--vox-ink-soft);
+  transition: color 0.15s ease;
+}
+nav.site-nav a:hover { color: var(--vox-ink); }
+nav.site-nav a.active { color: var(--vox-ink); }
+
+main { padding: 56px 0 80px; }
+
+/* ---- HERO ---- */
+
+.hero {
+  text-align: left;
+  margin-bottom: 56px;
+}
+.hero .eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vox-gold);
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-size: 64px;
+  margin-bottom: 22px;
+  letter-spacing: -0.02em;
+}
+.hero .tagline {
+  font-size: 22px;
+  color: var(--vox-ink-soft);
+  max-width: 28ch;
+  line-height: 1.4;
+  margin-bottom: 36px;
+}
+.hero .motto {
+  font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
+  font-size: 28px;
+  line-height: 1.35;
+  color: var(--vox-ink);
+  max-width: 30ch;
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.hero .motto .motto-soft {
+  color: var(--vox-ink-soft);
+  font-style: italic;
+  font-weight: 400;
+}
+.hero .tagline-explainer {
+  font-size: 17px;
+  color: var(--vox-ink-soft);
+  max-width: 50ch;
+  line-height: 1.5;
+  margin-bottom: 36px;
+}
+
+/* ---- CTA BUTTONS ---- */
+
+.cta-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--vox-ink);
+  color: var(--vox-paper);
+  border-color: var(--vox-ink);
+}
+.btn-primary:hover {
+  background: #243a5c;
+  border-color: #243a5c;
+  text-decoration: none;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--vox-ink);
+  border-color: var(--vox-ink);
+}
+.btn-secondary:hover {
+  background: var(--vox-ink);
+  color: var(--vox-paper);
+  text-decoration: none;
+}
+
+/* ---- CARDS / SECTIONS ---- */
+
+.card {
+  background: var(--vox-card);
+  border: 1px solid var(--vox-border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--vox-shadow);
+}
+
+.card h3 { margin-top: 0; }
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 32px 0;
+}
+
+.section-grid .card { margin-bottom: 0; }
+
+/* ---- FORMS ---- */
+
+form.signup {
+  background: var(--vox-card);
+  border: 1px solid var(--vox-border);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--vox-shadow);
+  max-width: 540px;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.form-row label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vox-ink);
+}
+.form-row .hint {
+  font-size: 13px;
+  color: var(--vox-ink-soft);
+  font-weight: 400;
+}
+.form-row input,
+.form-row textarea {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--vox-border);
+  border-radius: 8px;
+  background: var(--vox-paper);
+  color: var(--vox-ink);
+  transition: border-color 0.15s ease;
+}
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--vox-gold);
+}
+.form-row textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* ---- FOOTER ---- */
+
+footer.site-footer {
+  border-top: 1px solid var(--vox-border);
+  padding: 32px 0 48px;
+  margin-top: 80px;
+  background: var(--vox-paper);
+  color: var(--vox-ink-soft);
+  font-size: 14px;
+}
+footer.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+footer.site-footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer.site-footer nav a {
+  color: var(--vox-ink-soft);
+  text-decoration: none;
+}
+footer.site-footer nav a:hover { color: var(--vox-ink); }
+
+/* ---- UTILITIES ---- */
+
+.mute { color: var(--vox-ink-soft); }
+.gold { color: var(--vox-gold); }
+.center { text-align: center; }
+.tight { max-width: 60ch; }
+
+.callout {
+  border-left: 3px solid var(--vox-gold);
+  padding: 4px 0 4px 20px;
+  margin: 24px 0;
+  color: var(--vox-ink-soft);
+  font-style: italic;
+}
+
+/* ---- RESPONSIVE ---- */
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  h1 { font-size: 34px; }
+  .hero h1 { font-size: 42px; }
+  .hero .motto { font-size: 22px; }
+  .hero .tagline { font-size: 19px; }
+  .hero .tagline-explainer { font-size: 16px; }
+  h2 { font-size: 24px; margin: 36px 0 14px; }
+  h3 { font-size: 19px; }
+  main { padding: 36px 0 60px; }
+  .card { padding: 22px 24px; }
+  form.signup { padding: 24px; }
+  .wrap { padding: 0 20px; }
+  header.site-header { padding: 16px 0; }
+  nav.site-nav { gap: 16px; }
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .btn { text-align: center; }
+}
