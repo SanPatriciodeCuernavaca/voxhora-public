@@ -97,18 +97,19 @@ header.site-header .wrap {
 
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
   color: var(--vox-ink);
 }
 .brand .v-mark {
-  font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
-  font-size: 38px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--vox-gold);
-  letter-spacing: -0.02em;
+  width: 42px;
+  height: 42px;
+  border-radius: 9px;
+  object-fit: cover;
+  flex-shrink: 0;
+  /* Subtle shadow so the dark logo doesn't fight the cream background */
+  box-shadow: 0 1px 3px rgba(26, 47, 74, 0.18);
 }
 .brand .v-word {
   font-family: "Lora", "Charter", "Iowan Old Style", Georgia, serif;
