@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "S4GM27H6N5.com.patrickfagerberg.voxhora",
+          "S4GM27H6N5.com.patrickfagerberg.voxhora.mac"
+        ],
+        "components": [
+          { "/": "/connect", "?": { "code": "?*" }, "comment": "Voxhora one-tap setup link" }
+        ]
+      }
+    ]
+  }
+}

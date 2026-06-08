@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect Voxhora</title>
+  <style>
+    :root{--paper:#faf8f3;--ink:#1a2f4a;--inkSoft:#4d5a6e;--gold:#b08d57;--blue:#2a5a90;--green:#2e7d4f;--line:#e3ddcd;}
+    *{box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+    body{background:#e7e3d8;margin:0;padding:32px 18px;color:var(--ink);display:flex;justify-content:center;}
+    .card{background:var(--paper);max-width:460px;width:100%;border-radius:18px;box-shadow:0 10px 34px rgba(0,0,0,.14);padding:30px 26px;}
+    .logo{font-family:Georgia,serif;font-weight:700;font-size:24px;text-align:center;margin-bottom:4px;}
+    h1{font-size:20px;margin:14px 0 8px;}
+    p{font-size:14.5px;line-height:1.55;color:var(--inkSoft);}
+    .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:700;padding:14px;border-radius:12px;border:none;margin-top:16px;text-decoration:none;}
+    .btn-gold{background:var(--gold);color:#fff;}
+    .steps{font-size:14px;line-height:1.9;color:var(--ink);padding-left:20px;margin:8px 0;}
+    .muted{font-size:12.5px;color:var(--inkSoft);margin-top:18px;}
+    .err{display:none;background:#f3dede;color:#b02a32;border-radius:10px;padding:10px 12px;font-size:13px;margin-top:14px;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Voxhora</div>
+    <h1>Connect Voxhora AI</h1>
+    <p>Already installed Voxhora on this device? Tap the button below to finish connecting — your secure access code installs automatically and syncs to your other devices.</p>
+    <a id="connectBtn" class="btn btn-gold" href="#">Tap to connect</a>
+    <div id="noCode" class="err">This link is missing its setup code. Ask Patrick for a fresh setup link.</div>
+
+    <h1 style="margin-top:26px;">Don't have Voxhora yet?</h1>
+    <ol class="steps">
+      <li><b>iPhone &amp; iPad:</b> accept your TestFlight invitation (Apple emailed it), then Install.</li>
+      <li><b>Mac:</b> download from <a href="/download">voxhora.app/download</a> and drag Voxhora into Applications.</li>
+      <li>Come back and tap <b>Tap to connect</b> above.</li>
+    </ol>
+    <p class="muted">Stuck? Reply to your welcome email and Patrick will get you set up on a call or in person. This setup link is single-use and expires after a day.</p>
+  </div>
+
+  <script>
+    // Read ?code= and wire the "Tap to connect" button to the voxhora:// scheme
+    // so an already-installed app opens its onOpenURL connect handler. (When the
+    // universal link is fully live + the app is installed, iOS/macOS opens the
+    // app directly and this page is never shown.)
+    var code = new URLSearchParams(location.search).get("code");
+    var btn = document.getElementById("connectBtn");
+    if (code) {
+      btn.setAttribute("href", "voxhora://connect?code=" + encodeURIComponent(code));
+    } else {
+      btn.style.display = "none";
+      document.getElementById("noCode").style.display = "block";
+    }
+  </script>
+</body>
+</html>
