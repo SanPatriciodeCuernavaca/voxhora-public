@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — Voxhora</title>
-  <meta name="description" content="Voxhora privacy policy. CloudKit-only data storage, no third-party tracking, no analytics.">
+  <meta name="description" content="Voxhora privacy policy. Your client data stays in your own iCloud — no Voxhora server holds it. No third-party tracking, no analytics.">
   <link rel="icon" type="image/png" href="voxhora-logo.png">
   <link rel="apple-touch-icon" href="voxhora-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,27 +33,34 @@
   <div class="wrap">
 
     <h1>Privacy Policy</h1>
-    <p class="mute">Effective date: 19 May 2026. This is the version that applies during the private beta. A revised policy will replace this one when Voxhora launches publicly; existing users will be notified before the change takes effect.</p>
+    <p class="mute">Effective date: 9 June 2026.</p>
 
     <div class="callout">
-      Short version: your client data stays in your own iCloud account. Voxhora doesn't run a server that stores your data. No third-party analytics. No tracking. No ads. The audit trail lives on your own devices.
+      Short version: your client data stays in your own iCloud account — no Voxhora server stores it. A small account/billing server holds only your name, email, an access token, AI-usage counts, and subscription status (never your client data). Payments go through Lemon Squeezy; Voxhora never sees your card number. No third-party analytics, no tracking, no ads.
     </div>
 
     <h2>Who we are</h2>
     <p>Voxhora is owned and operated by <strong>Richard Patrick Fagerberg</strong>, a Texas-licensed attorney practicing in Travis County. Contact: <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a>.</p>
 
-    <h2>What we collect</h2>
+    <h2>Your client data — stored in your own iCloud</h2>
+    <p>When you use Voxhora, you create client records, billable time entries, calendar entries, case notes, and (optionally) upload PDF documents related to your matters. This information is your work product. <strong>It is stored in your own iCloud account via Apple's CloudKit service. Voxhora does not operate a server that receives or stores this client information.</strong> Apple's iCloud terms apply to that storage; Voxhora does not have access to it.</p>
 
-    <h3>Information you put into Voxhora</h3>
-    <p>When you use Voxhora, you create client records, billable time entries, calendar entries, case notes, and (optionally) upload PDF documents related to your matters. This information is your work product. <strong>It is stored in your own iCloud account via Apple's CloudKit service. Voxhora does not operate a server that receives or stores this information.</strong> Apple's iCloud terms apply to that storage; Voxhora does not have access to it.</p>
+    <h2>Account, subscription &amp; billing data</h2>
+    <p>To run your subscription and your AI features, a small amount of <strong>non-client</strong> account information is held on a Voxhora-operated server (a lightweight relay hosted on Fly.io):</p>
+    <ul>
+      <li>Your <strong>name and email address</strong>, an <strong>access token</strong> tied to your account, and <strong>AI-usage counts</strong> (token counts and cost) — used to operate the AI features and enforce fair-use limits.</li>
+      <li>Your <strong>subscription status</strong> (e.g., active, past due, cancelled), received from our payment processor, so we can manage your account.</li>
+    </ul>
+    <p>This server <strong>never receives or stores your client records, billable entries, notes, or documents</strong> — those stay in your iCloud, as described above.</p>
+    <p>Payments are processed by <strong>Lemon Squeezy</strong>, acting as our merchant of record (with Stripe as the underlying payment processor). When you subscribe, you provide your payment details directly to them; <strong>Voxhora never sees or stores your full card number.</strong> They handle your card data, receipts, and applicable sales tax under their own privacy policies. Voxhora receives only your email and subscription status back from them.</p>
 
-    <h3>Information you provide when you sign up for the beta</h3>
-    <p>If you submit the <a href="/request-access.html">Request iPhone Access</a> form, your name, email address, and any optional details you include (State Bar number, practice area, notes) are sent as a plain email to Patrick's personal inbox. They are used solely to evaluate your request and send you a TestFlight invite. They are not entered into any CRM, analytics tool, or mailing list. If you'd like that email deleted after your invite is processed, ask and it will be.</p>
+    <h2>Information you provide when you request access</h2>
+    <p>If you submit the <a href="/request-access.html">Request iPhone Access</a> form, your name, email address, and any optional details you include (State Bar number, practice area, notes) are sent as a plain email to Patrick's inbox. They are used solely to evaluate your request and send you a TestFlight invite. They are not entered into any CRM, analytics tool, or mailing list. If you'd like that email deleted after your invite is processed, ask and it will be.</p>
 
-    <h3>Crash and diagnostic data</h3>
+    <h2>Crash and diagnostic data</h2>
     <p>Voxhora uses Apple's built-in <strong>MetricKit</strong> framework to collect anonymized crash and hang reports. These are sent directly to Apple, who forwards summary data to the Voxhora developer account on App Store Connect. The reports do not contain client data; they identify which Voxhora code path crashed, on which OS version, and how many devices were affected. Apple's privacy controls apply — you can disable share-app-analytics in your iPhone, iPad, or Mac settings if you do not want to participate.</p>
 
-    <h3>What we do not collect</h3>
+    <h2>What we do not collect</h2>
     <ul>
       <li>No third-party analytics (no Google Analytics, no Mixpanel, no Segment, no Amplitude, no Firebase, nothing).</li>
       <li>No advertising trackers.</li>
@@ -64,11 +71,11 @@
     </ul>
 
     <h2>Voice recordings</h2>
-    <p>When you tap the microphone to dictate a billable entry, Voxhora uses Apple's on-device <strong>SFSpeechRecognizer</strong> framework. On modern Apple devices, this runs <strong>locally on your device</strong> — the audio never leaves your phone, Watch, iPad, or Mac. The recognized text is then optionally sent to an LLM (see below) for parsing into structured fields. The audio itself is discarded as soon as the recognition is complete and is never stored.</p>
+    <p>When you tap the microphone to dictate a billable entry, Voxhora uses Apple's on-device <strong>SFSpeechRecognizer</strong> framework. On modern Apple devices, this runs <strong>locally on your device</strong> — the audio never leaves your phone, Watch, iPad, or Mac. The recognized text is then optionally sent for parsing into structured fields (see below). The audio itself is discarded as soon as the recognition is complete and is never stored.</p>
 
-    <h2>Use of Anthropic Claude API for parsing</h2>
-    <p>To turn voice into structured billing entries, and to generate short summaries of intake documents you provide, Voxhora calls <strong>Anthropic's Claude API</strong>. The text content of your dictated phrase or uploaded document text is sent to Anthropic over HTTPS, processed, and the structured response returned. Anthropic's API privacy terms apply to that processing; Anthropic states that API requests are not used to train their models by default.</p>
-    <p>If you do not want any text leaving your device for parsing, you can turn off LLM-assisted billing in Voxhora settings — voice billing will then use the on-device comma-based parser only.</p>
+    <h2>Use of Anthropic Claude for parsing</h2>
+    <p>To turn voice into structured billing entries, and to generate short summaries of intake documents you provide, Voxhora calls <strong>Anthropic's Claude API</strong> through the Voxhora relay server described above (so you don't need your own Anthropic key). The text content of your dictated phrase or uploaded document text is sent over HTTPS, processed, and the structured response returned. The relay does not store the content of these requests — it records only metadata (token counts, cost, timestamp) for usage metering. Anthropic's API privacy terms apply to the processing; Anthropic states that API requests are not used to train their models by default.</p>
+    <p>If you do not want any text leaving your device for parsing, you can turn off AI-assisted billing in Voxhora settings — voice billing will then use the on-device comma-based parser only.</p>
 
     <h2>Email and SMS sent through Voxhora</h2>
     <p>When you use Voxhora to send a client an email or text reminder, the message is sent through <strong>your own Mail.app or Messages.app account</strong> — Voxhora does not have a server that sends mail on your behalf. Standard email and SMS privacy practices apply at the carrier and email-provider level.</p>
@@ -78,14 +85,13 @@
     <p>The site loads one external resource: the Lora typeface from Google Fonts. Google may log basic information about font requests per Google Fonts' policy. If you'd prefer to avoid even that, blocking <code>fonts.googleapis.com</code> in your browser still leaves the site fully readable.</p>
 
     <h2>Data subject rights</h2>
-    <p>Because Voxhora does not operate a server that stores your client data, traditional "data subject access requests" don't really apply in the usual SaaS sense — your data is already in your direct possession in your iCloud account. You can export it from Voxhora at any time via the voucher CSV exporter, and you can delete your iCloud copy by uninstalling Voxhora and removing the app's container from iCloud settings.</p>
-    <p>For the contact-form data Patrick receives in his inbox, you can request deletion by emailing <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> with "delete my signup email" in the subject.</p>
+    <p>Your client data is already in your direct possession in your own iCloud account — you can export it from Voxhora at any time, and you can delete your iCloud copy by uninstalling Voxhora and removing the app's container from iCloud settings. To delete the non-client account data held on the Voxhora relay (your name, email, token, usage counts, subscription status) or the contact-form data in Patrick's inbox, email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> and it will be removed. Billing records held by Lemon Squeezy are handled under their own policy.</p>
 
     <h2>Children</h2>
     <p>Voxhora is professional software for licensed attorneys. It is not directed at children under 13 and Voxhora does not knowingly collect information from children under 13.</p>
 
     <h2>Changes to this policy</h2>
-    <p>If this policy changes materially, the new version will replace this page and the effective date at the top will update. Existing beta users will be notified by email before the change takes effect.</p>
+    <p>If this policy changes materially, the new version will replace this page and the effective date at the top will update. Where practical, current users will be notified by email before the change takes effect.</p>
 
     <h2>Questions</h2>
     <p>Email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a>.</p>
