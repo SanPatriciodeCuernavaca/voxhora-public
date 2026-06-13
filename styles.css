@@ -392,3 +392,44 @@ footer.site-footer nav a:hover { color: var(--vox-ink); }
   .cta-row { flex-direction: column; align-items: stretch; }
   .btn { text-align: center; }
 }
+
+/* ----------------------------------------------------------------
+   "See Voxhora in action" — real-screen demo clips
+   (added 2026-06-12; brand tokens above)
+   ---------------------------------------------------------------- */
+.demos { margin: 48px 0; }
+.demos .lede { color: var(--vox-ink-soft); font-size: 16px; margin: 0 0 24px; max-width: 65ch; }
+
+.demo-phones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 18px;
+  margin: 0 0 24px;
+}
+.demo-tablets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.demo-card {
+  background: var(--vox-card);
+  border: 1px solid var(--vox-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--vox-shadow);
+}
+.demo-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #1a2f4a;
+}
+.demo-card .cap { padding: 12px 14px 14px; }
+.demo-card .cap .t { font-weight: 600; font-size: 15px; color: var(--vox-ink); }
+.demo-card .cap .d { color: var(--vox-ink-soft); font-size: 13.5px; line-height: 1.45; margin-top: 3px; }
+
+@media (max-width: 520px) {
+  .demo-phones { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .demo-card .cap .d { font-size: 12.5px; }
+}
