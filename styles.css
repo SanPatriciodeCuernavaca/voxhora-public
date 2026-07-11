@@ -433,3 +433,33 @@ footer.site-footer nav a:hover { color: var(--vox-ink); }
   .demo-phones { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .demo-card .cap .d { font-size: 12.5px; }
 }
+
+/* Get-Voxhora device section + QR (2026-07-11) */
+.get-voxhora .gv-inner {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  background: linear-gradient(135deg, #fdfbf7, #f3eee2);
+  border: 1px solid #e4ddce;
+  border-radius: 18px;
+  padding: 34px 40px;
+}
+.get-voxhora .gv-text { flex: 1; }
+.get-voxhora .gv-eyebrow {
+  font-size: 12px; letter-spacing: 2px; font-weight: 700;
+  color: #b08d57; margin-bottom: 6px;
+}
+.get-voxhora .gv-text h2 { margin-top: 0; }
+.get-voxhora .gv-qr { text-align: center; flex: none; }
+.get-voxhora .gv-qr img {
+  border: 8px solid #fff; border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(26, 47, 74, .12);
+  display: block;
+}
+.get-voxhora .gv-qr span {
+  display: block; margin-top: 8px; font-size: 12px; color: #4d5a6e;
+}
+@media (max-width: 640px) {
+  .get-voxhora .gv-inner { flex-direction: column; text-align: center; gap: 22px; padding: 26px 22px; }
+  .get-voxhora .gv-eyebrow { text-align: center; }
+}
