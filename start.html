@@ -65,7 +65,7 @@
     <!-- GATE: the one front door -->
     <section id="gate">
       <h1>Get started</h1>
-      <p class="tight mute">Patrick gave you a short access code — by text, email, or in person. Enter it and your setup steps appear. The whole thing takes about five minutes.</p>
+      <p class="tight mute">I sent you a short access code — by text, email, or I read it to you. Type it in below and your setup steps appear, written out step by step. It takes about five minutes and there is nothing technical to figure out. — Patrick</p>
 
       <div class="code-row" style="max-width: 420px;">
         <input type="text" id="code" placeholder="Your code, e.g. Xy3kPz-A" autocapitalize="off" autocomplete="off" spellcheck="false">
@@ -76,7 +76,7 @@
       <div class="divider-or" style="max-width: 420px;">or</div>
 
       <h2 style="font-size: 20px;">I need a code</h2>
-      <p class="tight mute">Voxhora is invite-only during the beta. Leave your name and email — when you click Send, your email app opens with a pre-filled request. Approvals are manual, typically same-day, and your code arrives by reply.</p>
+      <p class="tight mute">Voxhora is invite-only right now. Leave your name and email and click Request access — your email app opens with the message already written; just hit Send. I read these myself and usually reply the same day with your code.</p>
       <form class="signup" style="max-width: 420px;" onsubmit="return composeRequest(event)">
         <div class="form-row">
           <label for="name">Full name</label>
@@ -93,7 +93,7 @@
     <!-- UNLOCKED: the personal steps -->
     <section id="unlocked" class="hidden">
       <h1 id="welcome">Welcome 👋</h1>
-      <p class="tight mute">Three steps, in this order. About five minutes, nothing to configure.</p>
+      <p class="tight mute">Four short steps, in this order — about five minutes. Nothing technical, nothing to configure. If anything at all is unclear, stop and call or email me and I'll do it with you.</p>
       <p class="tight" style="background: var(--vox-card); border: 1px solid var(--vox-border); border-radius: 10px; padding: 12px 16px; max-width: 520px;">
         <strong>Keep your code handy</strong> — you'll enter it again on your iPhone (step&nbsp;2) and in the app's signup.
         <button class="btn" id="copybtn" style="margin-left: 10px; padding: 6px 14px; font-size: 14px;" onclick="copyCode()">Copy code</button>
@@ -103,35 +103,48 @@
         <div class="start-step">
           <div class="step-num">1</div>
           <div>
-            <h3>On your Mac — download Voxhora</h3>
-            <p>Click below, then on the page that opens click the <strong>.dmg</strong> file. Open it and drag <strong>Voxhora-Mac</strong> into Applications. The first launch opens the signup wizard — it will ask for this same code.</p>
-            <a class="btn btn-primary" id="macbtn" href="#" target="_blank" rel="noopener">Download for Mac</a>
-            <p class="hint" style="margin-top:8px;">If your Mac hesitates to open it the first time: right-click the app → Open. It's notarized by Apple and safe.</p>
+            <h3>Your Mac</h3>
+            <p>Click the button. Your browser opens a page with one file ending in <strong>.dmg</strong> — click it to download, then open it from your Downloads. A window appears with the Voxhora icon; drag that icon onto the Applications folder beside it. Then open Voxhora from your Applications folder.</p>
+            <p style="margin-top:8px;">Voxhora asks a few setup questions the first time. When it asks for your <strong>access code</strong>, type the code above. That's the only time you type it on this Mac.</p>
+            <a class="btn btn-primary" id="macbtn" href="#" target="_blank" rel="noopener">Download Voxhora for Mac</a>
+            <p class="hint" style="margin-top:8px;">If your Mac says it can't check the app, right-click the Voxhora icon and choose <strong>Open</strong> — then click Open again. It's signed and approved by Apple; this only happens once.</p>
           </div>
         </div>
 
         <div class="start-step">
           <div class="step-num">2</div>
           <div>
-            <h3>On your iPhone &amp; iPad — get the app</h3>
-            <p id="tf-with">Open <strong>voxhora.app/start</strong> on your iPhone, enter the same code, and tap below — it installs through Apple's TestFlight. Your Apple Watch installs itself from your iPhone.</p>
-            <p id="tf-without" class="hidden">Apple emails your personal TestFlight invitation separately — tap <strong>Accept</strong>, then <strong>Install</strong>. Your Apple Watch installs itself from your iPhone.</p>
-            <a class="btn btn-primary hidden" id="tfbtn" href="#" target="_blank" rel="noopener">Get it on iPhone (TestFlight)</a>
+            <h3>Your iPhone and iPad</h3>
+            <p id="tf-with">On your iPhone, open this same page — <strong>voxhora.app/start</strong> — enter your code, and tap the button below. Apple's TestFlight app handles the install (install TestFlight first if it asks). Do the same on your iPad.</p>
+            <p id="tf-without" class="hidden">Apple sends you a TestFlight invitation by email — open it on your iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. Do the same on your iPad.</p>
+            <a class="btn btn-primary hidden" id="tfbtn" href="#" target="_blank" rel="noopener">Install on iPhone / iPad</a>
+            <p class="hint" style="margin-top:8px;">In TestFlight, turn on <strong>Automatic Updates</strong> — then future versions arrive by themselves.</p>
           </div>
         </div>
 
         <div class="start-step">
           <div class="step-num">3</div>
           <div>
-            <h3>Connect your Voxhora AI</h3>
-            <p>Once the app is installed on <em>any one</em> device, tap below on that device (or let the signup wizard do it with your code). One tap, one device — everything else syncs on its own.</p>
-            <a class="btn btn-primary" id="connectbtn" href="#">Connect</a>
+            <h3>Your Apple Watch</h3>
+            <p>On your iPhone, open the app called <strong>Watch</strong> (it comes with every iPhone — the black icon with a watch on it). Scroll down to <strong>Available Apps</strong>, find <strong>Voxhora</strong>, and tap <strong>Install</strong>. If Voxhora is already under "Installed on Apple Watch," you're done — nothing to do.</p>
+            <p class="hint" style="margin-top:8px;">The Watch has no code to enter — it picks everything up from your iPhone.</p>
+          </div>
+        </div>
+
+        <div class="start-step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>You're done — here's what happens by itself</h3>
+            <p>You entered your code <strong>once</strong>. Your Voxhora AI, your clients, your calendar, and your billing now travel between your Mac, iPhone, iPad, and Watch on their own — you don't set anything up twice.</p>
+            <p style="margin-top:8px;">One thing to check on each device: <strong>Settings → your name → iCloud</strong>, and make sure <strong>iCloud Keychain</strong> and <strong>iCloud Drive</strong> are turned on. That's what carries everything across.</p>
             <p class="hint" style="margin-top:8px;" id="expiry-note"></p>
+            <p style="margin-top:12px;">If your AI ever asks to be connected on a device, just type the same code again — it never runs out of devices.</p>
+            <a class="btn hidden" id="connectbtn" href="#">Connect this device now</a>
           </div>
         </div>
       </div>
 
-      <p class="tight mute" style="margin-top: 18px;">Stuck anywhere? Reply to Patrick's message or call him — he'll get on the phone or set you up in person.</p>
+      <p class="tight mute" style="margin-top: 18px;">Stuck on any step? Email me at <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> or just call — I'll get on the phone with you or set it up in person. — Patrick</p>
     </section>
 
   </div>
@@ -208,7 +221,7 @@ function composeRequest(event) {
     '\nApple ID email: ' + email +
     '\n\n— Submitted via voxhora.app'
   );
-  window.location.href = 'mailto:support@voxhora.app?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:patrick@patrickfagerberg.com?subject=' + subject + '&body=' + body;
   return false;
 }
 </script>
