@@ -95,6 +95,10 @@
     <section id="unlocked" class="hidden">
       <h1 id="welcome">Welcome 👋</h1>
       <p class="tight mute">Three steps, in this order. About five minutes, nothing to configure.</p>
+      <p class="tight" style="background: var(--vox-card); border: 1px solid var(--vox-border); border-radius: 10px; padding: 12px 16px; max-width: 520px;">
+        <strong>Keep your code handy</strong> — you'll enter it again on your iPhone (step&nbsp;2) and in the app's signup.
+        <button class="btn" id="copybtn" style="margin-left: 10px; padding: 6px 14px; font-size: 14px;" onclick="copyCode()">Copy code</button>
+      </p>
 
       <div class="step-list">
         <div class="start-step">
@@ -180,6 +184,17 @@ async function checkCode() {
   }
 }
 document.getElementById('code').addEventListener('keydown', e => { if (e.key === 'Enter') checkCode(); });
+
+async function copyCode() {
+  const code = document.getElementById('code').value.trim();
+  const btn = document.getElementById('copybtn');
+  try {
+    await navigator.clipboard.writeText(code);
+    btn.textContent = 'Copied ✓';
+  } catch (e) {
+    btn.textContent = code;   /* clipboard blocked — show it to copy by hand */
+  }
+}
 
 /* Same template + marker lines as request-access.html — the Mac worker
    parses these exact strings; change them there and here together. */
