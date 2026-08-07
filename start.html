@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Get started — Voxhora</title>
-  <meta name="description" content="Enter your Voxhora access code to set up your Mac, iPhone, iPad, and Apple Watch — about five minutes, nothing to configure.">
+  <meta name="description" content="Enter your Voxhora access code to set up your Mac, iPhone, iPad, and Apple Watch — step by step.">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Voxhora">
   <meta property="og:title" content="Get started — Voxhora">
-  <meta property="og:description" content="Enter your Voxhora access code to set up all your devices — about five minutes.">
+  <meta property="og:description" content="Enter your Voxhora access code to set up all your devices — step by step.">
   <meta property="og:url" content="https://voxhora.app/start.html">
   <meta property="og:image" content="https://voxhora.app/voxhora-social-card.png">
   <style>
@@ -65,7 +65,7 @@
     <!-- GATE: the one front door -->
     <section id="gate">
       <h1>Get started</h1>
-      <p class="tight mute">I sent you a short access code — by text, email, or I read it to you. Type it in below and your setup steps appear, written out step by step. It takes about five minutes and there is nothing technical to figure out. — Patrick</p>
+      <p class="tight mute">I sent you a short access code — by text, email, or I read it to you. Type it in below and your setup steps appear, written out one at a time. — Patrick</p>
 
       <div class="code-row" style="max-width: 420px;">
         <input type="text" id="code" placeholder="Your code, e.g. Xy3kPz-A" autocapitalize="off" autocomplete="off" spellcheck="false">
@@ -93,9 +93,9 @@
     <!-- UNLOCKED: the personal steps -->
     <section id="unlocked" class="hidden">
       <h1 id="welcome">Welcome 👋</h1>
-      <p class="tight mute">Four short steps, in this order — about five minutes. Nothing technical, nothing to configure. If anything at all is unclear, stop and call or email me and I'll do it with you.</p>
+      <p class="tight mute">Four steps, in this order. Take your time — If anything at all is unclear, stop and call or email me and I'll do it with you.</p>
       <p class="tight" style="background: var(--vox-card); border: 1px solid var(--vox-border); border-radius: 10px; padding: 12px 16px; max-width: 520px;">
-        <strong>Keep your code handy</strong> — you'll enter it again on your iPhone (step&nbsp;2) and in the app's signup.
+        <strong>Keep your code handy</strong> — you will type it once more, in the setup assistant on your Mac (step&nbsp;1).
         <button class="btn" id="copybtn" style="margin-left: 10px; padding: 6px 14px; font-size: 14px;" onclick="copyCode()">Copy code</button>
       </p>
 
@@ -105,7 +105,15 @@
           <div>
             <h3>Your Mac</h3>
             <p>Click the button. Your browser opens a page with one file ending in <strong>.dmg</strong> — click it to download, then open it from your Downloads. A window appears with the Voxhora icon; drag that icon onto the Applications folder beside it. Then open Voxhora from your Applications folder.</p>
-            <p style="margin-top:8px;">Voxhora asks a few setup questions the first time. When it asks for your <strong>access code</strong>, type the code above. That's the only time you type it on this Mac.</p>
+            <p style="margin-top:8px;">The first time you open Voxhora, a setup assistant starts on its own and walks you through, one screen at a time:</p>
+            <ol style="margin: 8px 0 0 18px; font-size: 14.5px; line-height: 1.7;">
+              <li>A welcome screen — click through it.</li>
+              <li>It checks that <strong>iCloud</strong> is turned on, so your work reaches your other devices.</li>
+              <li>It asks your Mac&rsquo;s permission for notifications and to read your court email.</li>
+              <li><strong>It asks for your access code.</strong> Type the code above and click Connect. That is the only thing you type, and only once on this Mac.</li>
+              <li>Then your <strong>TechShare</strong> login for discovery, a check of your court email, and where to keep your files.</li>
+            </ol>
+            <p style="margin-top:8px;">Any screen you would rather handle later has a <strong>Skip for now</strong> button, and your progress is saved if you quit partway.</p>
             <a class="btn btn-primary" id="macbtn" href="#" target="_blank" rel="noopener">Download Voxhora for Mac</a>
             <p class="hint" style="margin-top:8px;">If your Mac says it can't check the app, right-click the Voxhora icon and choose <strong>Open</strong> — then click Open again. It's signed and approved by Apple; this only happens once.</p>
           </div>
@@ -115,10 +123,19 @@
           <div class="step-num">2</div>
           <div>
             <h3>Your iPhone and iPad</h3>
-            <p id="tf-with">On your iPhone, open this same page — <strong>voxhora.app/start</strong> — enter your code, and tap the button below. Apple's TestFlight app handles the install (install TestFlight first if it asks). Do the same on your iPad.</p>
+            <p id="tf-with">Voxhora installs on your iPhone and iPad through Apple&rsquo;s TestFlight app (it installs TestFlight for you if you do not have it). Do this on each device.</p>
             <p id="tf-without" class="hidden">Apple sends you a TestFlight invitation by email — open it on your iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. Do the same on your iPad.</p>
-            <a class="btn btn-primary hidden" id="tfbtn" href="#" target="_blank" rel="noopener">Install on iPhone / iPad</a>
-            <p class="hint" style="margin-top:8px;">In TestFlight, turn on <strong>Automatic Updates</strong> — then future versions arrive by themselves.</p>
+            <div style="display:flex; gap:22px; align-items:center; flex-wrap:wrap; margin-top:10px;">
+              <div style="text-align:center;">
+                <img src="qr-testflight.png" alt="Scan to install Voxhora on your iPhone" width="150" height="150" style="border:1px solid var(--vox-border); border-radius:10px; background:#fff; padding:6px;">
+                <div class="hint" style="margin-top:6px;">Point your iPhone camera here</div>
+              </div>
+              <div>
+                <p style="margin-bottom:8px;">Easiest way: open your iPhone camera and point it at this square. Tap the link that pops up, and TestFlight takes it from there.</p>
+                <a class="btn btn-primary hidden" id="tfbtn" href="#" target="_blank" rel="noopener">Or open the install link here</a>
+              </div>
+            </div>
+            <p class="hint" style="margin-top:8px;">In TestFlight, turn on <strong>Automatic Updates</strong> — then future versions arrive by themselves. Your iPhone does not ask for the code; it picks everything up from your Mac.</p>
           </div>
         </div>
 
