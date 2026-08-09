@@ -225,20 +225,47 @@ async function copyCode() {
   }
 }
 
-/* Same template + marker lines as request-access.html — the Mac worker
-   parses these exact strings; change them there and here together. */
-function composeRequest(event) {
+/* 2026-08-09 — posts to Voxhora's server, exactly like request-access.html.
+   This page is the one the HOMEPAGE links to, so it is the form nearly every
+   visitor actually reaches; request-access.html is the quieter door. It used
+   to build a `mailto:` and hand the request to the visitor's mail app, which
+   opens Mail.app on a Mac with no account configured and asks them to add
+   one — the request never left their machine. Verified broken twice: once by
+   an outside tester, once by Patrick himself from this very page.
+   Keep this handler and request-access.html's in step. */
+async function composeRequest(event) {
   event.preventDefault();
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
-  const subject = encodeURIComponent('Voxhora — TestFlight access request from ' + name);
-  const body = encodeURIComponent(
-    'Voxhora TestFlight invite request' +
-    '\n\nName: ' + name +
-    '\nApple ID email: ' + email +
-    '\n\n— Submitted via voxhora.app'
-  );
-  window.location.href = 'mailto:patrick@patrickfagerberg.com?subject=' + subject + '&body=' + body;
+  const btn = event.target.querySelector('button[type="submit"], .btn');
+  let status = document.getElementById('req-status');
+  if (!status) {
+    status = document.createElement('p');
+    status.id = 'req-status';
+    status.style.cssText = 'margin-top:14px;font-size:14.5px;font-weight:600;';
+    event.target.appendChild(status);
+  }
+  const say = (m, ok) => { status.textContent = m; status.style.color = ok ? '#2e7d4f' : '#b02a32'; };
+
+  if (!name || email.indexOf('@') === -1) {
+    say('Please enter your name and a valid email address.', false);
+    return false;
+  }
+  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
+  try {
+    const r = await fetch('https://voxhora-llm-proxy.fly.dev/v1/request-access', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, practice: 'via voxhora.app/start' })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    say("Thank you — your request is in. Patrick will email you a setup code, usually within a day.", true);
+    event.target.reset();
+  } catch (e) {
+    say('Something went wrong sending that. Please email patrick@patrickfagerberg.com directly with your name and the email you use on your iPhone.', false);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Request access'; }
+  }
   return false;
 }
 </script>
