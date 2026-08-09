@@ -67,9 +67,10 @@
       </div>
 
       <button type="submit" class="btn btn-primary" style="width:100%; padding: 16px;">Send request</button>
+      <p id="req-status" style="display:none; margin-top:14px; font-size:14.5px; font-weight:600;"></p>
     </form>
 
-    <p class="mute" style="margin-top: 24px; font-size: 14px;">When you click Send, your email app opens with a pre-filled message to <strong>patrick@patrickfagerberg.com</strong>. Hit Send and you're done. If nothing opens (some browsers have no default mail app), just email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> directly with your name and the Apple ID email you use on your iPhone.</p>
+    <p class="mute" style="margin-top: 24px; font-size: 14px;">Your request goes straight to Patrick — nothing opens on your computer, and you don't need email set up on this device. Prefer to write instead? Email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> with your name and the Apple ID email you use on your iPhone.</p>
 
     <h2>What happens next</h2>
     <ol>
@@ -97,26 +98,57 @@
 </footer>
 
 <script>
-function composeRequest(event) {
+// 2026-08-09 — this used to build a `mailto:` and hand the request to the
+// VISITOR'S mail app. A real prospect tried it: he reads mail in Gmail, so
+// macOS opened Mail.app, found no account configured, and asked him to add
+// one. His request never left his machine and never reached Patrick. Anyone
+// using webmail hits the same wall, which is most people — and mailto had
+// already burned this project once by silently truncating long bodies and
+// sending blank invites.
+//
+// The form now posts straight to Voxhora's server, which does not depend on
+// anything being installed or configured on the visitor's computer. The
+// mailto link below the form stays as a visible fallback, where it belongs:
+// an option, not the mechanism.
+async function composeRequest(event) {
   event.preventDefault();
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const bar = document.getElementById('bar').value.trim();
   const practice = document.getElementById('practice').value.trim();
   const note = document.getElementById('note').value.trim();
+  const btn = document.querySelector('#access-form button[type="submit"], #access-form .btn');
+  const status = document.getElementById('req-status');
 
-  const subject = encodeURIComponent('Voxhora — TestFlight access request from ' + name);
-  const body = encodeURIComponent(
-    'Voxhora TestFlight invite request' +
-    '\n\nName: ' + name +
-    '\nApple ID email: ' + email +
-    (bar ? '\nState Bar #: ' + bar : '') +
-    (practice ? '\nPractice / jurisdiction: ' + practice : '') +
-    (note ? '\n\nNote:\n' + note : '') +
-    '\n\n— Submitted via voxhora.app'
-  );
+  const say = (msg, ok) => {
+    if (!status) { alert(msg); return; }
+    status.textContent = msg;
+    status.style.display = 'block';
+    status.style.color = ok ? '#2e7d4f' : '#b02a32';
+  };
 
-  window.location.href = 'mailto:patrick@patrickfagerberg.com?subject=' + subject + '&body=' + body;
+  if (!name || email.indexOf('@') === -1) {
+    say('Please enter your name and a valid email address.', false);
+    return false;
+  }
+
+  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
+  try {
+    const r = await fetch('https://voxhora-llm-proxy.fly.dev/v1/request-access', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name, email, bar, practice, note })
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    say("Thank you — your request is in. Patrick will email you a setup code, usually within a day.", true);
+    document.getElementById('access-form').reset();
+  } catch (e) {
+    // Never leave someone staring at a dead button. Tell them the one thing
+    // that always works.
+    say('Something went wrong sending that. Please email patrick@patrickfagerberg.com directly with your name and the email you use on your iPhone.', false);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send'; }
+  }
   return false;
 }
 </script>
