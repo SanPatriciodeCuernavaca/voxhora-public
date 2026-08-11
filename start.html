@@ -4,45 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Get started — Voxhora</title>
-  <meta name="description" content="Enter your Voxhora access code to set up your Mac, iPhone, iPad, and Apple Watch — step by step.">
+  <meta name="description" content="Request access to Voxhora. Your welcome email carries everything — code, links, and every step.">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Voxhora">
   <meta property="og:title" content="Get started — Voxhora">
-  <meta property="og:description" content="Enter your Voxhora access code to set up all your devices — step by step.">
+  <meta property="og:description" content="Request access to Voxhora — everything you need arrives in one email.">
   <meta property="og:url" content="https://voxhora.app/start.html">
   <meta property="og:image" content="https://voxhora.app/voxhora-social-card.png">
-  <style>
-    .code-row { display: flex; gap: 10px; }
-    .code-row input {
-      flex: 1; font-size: 18px; letter-spacing: .08em; padding: 12px 14px;
-    }
-    .step-list { margin-top: 8px; }
-    .start-step {
-      display: flex; gap: 16px; padding: 18px 0;
-      border-top: 1px solid var(--vox-border); align-items: flex-start;
-    }
-    .start-step:first-child { border-top: none; }
-    .step-num {
-      background: var(--vox-gold); color: #fff; font-weight: 700; font-size: 15px;
-      width: 30px; height: 30px; border-radius: 50%; flex: none;
-      display: flex; align-items: center; justify-content: center; margin-top: 2px;
-    }
-    .start-step h3 { margin: 0 0 4px; font-size: 17px; }
-    .start-step p { margin: 0; font-size: 14.5px; }
-    .start-step .btn { margin-top: 10px; }
-    .err-line { color: #a33; font-size: 14.5px; margin-top: 10px; display: none; }
-    .hidden { display: none; }
-    .divider-or {
-      text-align: center; color: var(--vox-ink-soft); font-size: 14px;
-      margin: 26px 0 22px; display: flex; align-items: center; gap: 14px;
-    }
-    .divider-or::before, .divider-or::after {
-      content: ""; flex: 1; height: 1px; background: var(--vox-border);
-    }
-  </style>
 </head>
 <body>
 
@@ -62,21 +33,16 @@
 <main>
   <div class="wrap">
 
-    <!-- GATE: the one front door -->
-    <section id="gate">
+    <!-- 2026-08-11 redesign: the welcome EMAIL is the onboarding. This page's
+         old code gate + 4-step walkthrough are gone — they made attorneys type
+         the code twice, showed a QR that couldn't be scanned from the phone it
+         was displayed on, and sealed steps 2-4 behind a 410 once the Mac
+         claimed the code. Now this page does exactly one thing: take a request.
+         Everything else arrives in Patrick's email. -->
+    <section>
       <h1>Get started</h1>
-      <p class="tight mute">I sent you a short access code — by text, email, or I read it to you. Type it in below and your setup steps appear, written out one at a time. — Patrick</p>
+      <p class="tight mute" style="max-width: 520px;">Voxhora is invite-only right now. Leave your name and email below — I read every request myself and usually reply the same day with <strong>one email that has everything</strong>: your access code, both install links, and each step written out. — Patrick</p>
 
-      <div class="code-row" style="max-width: 420px;">
-        <input type="text" id="code" placeholder="Your code, e.g. Xy3kPz-A" autocapitalize="off" autocomplete="off" spellcheck="false">
-        <button class="btn btn-primary" id="openbtn" onclick="checkCode()">Open</button>
-      </div>
-      <p class="err-line" id="err"></p>
-
-      <div class="divider-or" style="max-width: 420px;">or</div>
-
-      <h2 style="font-size: 20px;">I need a code</h2>
-      <p class="tight mute">Voxhora is invite-only right now. Leave your name and email and click Request access — your email app opens with the message already written; just hit Send. I read these myself and usually reply the same day with your code.</p>
       <form class="signup" style="max-width: 420px;" onsubmit="return composeRequest(event)">
         <div class="form-row">
           <label for="name">Full name</label>
@@ -86,153 +52,21 @@
           <label for="email">Email <span class="hint">— the Apple ID you use on your iPhone</span></label>
           <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
         </div>
-        <button type="submit" class="btn">Request access</button>
+        <button type="submit" class="btn btn-primary">Request access</button>
       </form>
-    </section>
 
-    <!-- UNLOCKED: the personal steps -->
-    <section id="unlocked" class="hidden">
-      <h1 id="welcome">Welcome 👋</h1>
-      <p class="tight mute">Four steps, in this order. Take your time. If anything at all is unclear, stop and call or email me and I'll do it with you.</p>
-      <p class="tight" style="background: var(--vox-card); border: 1px solid var(--vox-border); border-radius: 10px; padding: 12px 16px; max-width: 520px;">
-        <strong>Keep your code handy</strong> — you will type it once more, in the setup assistant on your Mac (step&nbsp;1).
-        <button class="btn" id="copybtn" style="margin-left: 10px; padding: 6px 14px; font-size: 14px;" onclick="copyCode()">Copy code</button>
-      </p>
+      <p class="tight mute" style="margin-top: 26px; max-width: 520px;"><strong>Already have your welcome email?</strong> It has everything — your code goes into the Voxhora app on your Mac when it asks. Nothing to type on this page.</p>
 
-      <div class="step-list">
-        <div class="start-step">
-          <div class="step-num">1</div>
-          <div>
-            <h3>Your Mac</h3>
-            <p>Click the button below — Voxhora downloads straight to your Downloads folder. Open it there. A window appears with the Voxhora icon; drag that icon onto the Applications folder beside it. Then open Voxhora from your Applications folder.</p>
-            <p style="margin-top:8px;">The first time you open Voxhora, a setup assistant starts on its own and walks you through, one screen at a time:</p>
-            <ol style="margin: 8px 0 0 18px; font-size: 14.5px; line-height: 1.7;">
-              <li>A welcome screen — click through it.</li>
-              <li>It checks that <strong>iCloud</strong> is turned on, so your work reaches your other devices.</li>
-              <li>It asks your Mac&rsquo;s permission for notifications and to read your court email.</li>
-              <li><strong>It asks for your access code.</strong> Type the code above and click Connect. That is the only thing you type, and only once on this Mac.</li>
-              <li>Then your <strong>TechShare</strong> login for discovery, a check of your court email, and where to keep your files.</li>
-            </ol>
-            <p style="margin-top:8px;">Any screen you would rather handle later has a <strong>Skip for now</strong> button, and your progress is saved if you quit partway.</p>
-            <a class="btn btn-primary" id="macbtn" href="#" target="_blank" rel="noopener">Download Voxhora for Mac</a>
-            <p class="hint" style="margin-top:8px;">If your Mac says it can't check the app, right-click the Voxhora icon and choose <strong>Open</strong> — then click Open again. It's signed and approved by Apple; this only happens once.</p>
-          </div>
-        </div>
-
-        <div class="start-step">
-          <div class="step-num">2</div>
-          <div>
-            <h3>Your iPhone and iPad</h3>
-            <p id="tf-with">Voxhora installs on your iPhone and iPad through Apple&rsquo;s TestFlight app (it installs TestFlight for you if you do not have it). Do this on each device.</p>
-            <p id="tf-without" class="hidden">Apple sends you a TestFlight invitation by email — open it on your iPhone, tap <strong>Accept</strong>, then <strong>Install</strong>. Do the same on your iPad.</p>
-            <div style="display:flex; gap:22px; align-items:center; flex-wrap:wrap; margin-top:10px;">
-              <div style="text-align:center;">
-                <img src="qr-testflight.png" alt="Scan to install Voxhora on your iPhone" width="150" height="150" style="border:1px solid var(--vox-border); border-radius:10px; background:#fff; padding:6px;">
-                <div class="hint" style="margin-top:6px;">Point your iPhone camera here</div>
-              </div>
-              <div>
-                <p style="margin-bottom:8px;">Easiest way: open your iPhone camera and point it at this square. Tap the link that pops up, and TestFlight takes it from there.</p>
-                <a class="btn btn-primary hidden" id="tfbtn" href="#" target="_blank" rel="noopener">Or open the install link here</a>
-              </div>
-            </div>
-            <p class="hint" style="margin-top:8px;">In TestFlight, turn on <strong>Automatic Updates</strong> — then future versions arrive by themselves. Your iPhone does not ask for the code; it picks everything up from your Mac.</p>
-          </div>
-        </div>
-
-        <div class="start-step">
-          <div class="step-num">3</div>
-          <div>
-            <h3>Your Apple Watch</h3>
-            <p>On your iPhone, open the app called <strong>Watch</strong> (it comes with every iPhone — the black icon with a watch on it). Scroll down to <strong>Available Apps</strong>, find <strong>Voxhora</strong>, and tap <strong>Install</strong>. If Voxhora is already under "Installed on Apple Watch," you're done — nothing to do.</p>
-            <p class="hint" style="margin-top:8px;">The Watch has no code to enter — it picks everything up from your iPhone.</p>
-          </div>
-        </div>
-
-        <div class="start-step">
-          <div class="step-num">4</div>
-          <div>
-            <h3>You're done — here's what happens by itself</h3>
-            <p>You entered your code <strong>once</strong>. Your Voxhora AI, your clients, your calendar, and your billing now travel between your Mac, iPhone, iPad, and Watch on their own — you don't set anything up twice.</p>
-            <p style="margin-top:8px;">One thing to check on each device: <strong>Settings → your name → iCloud</strong>, and make sure <strong>iCloud Keychain</strong> and <strong>iCloud Drive</strong> are turned on. That's what carries everything across.</p>
-            <p class="hint" style="margin-top:8px;" id="expiry-note"></p>
-            <p style="margin-top:12px;">If your AI ever asks to be connected on a device, just type the same code again — it never runs out of devices.</p>
-            <a class="btn hidden" id="connectbtn" href="#">Connect this device now</a>
-          </div>
-        </div>
-      </div>
-
-      <p class="tight mute" style="margin-top: 18px;">Stuck on any step? Email me at <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> or just call — I'll get on the phone with you or set it up in person. — Patrick</p>
+      <p class="tight mute" style="margin-top: 18px;">Questions? Email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> or just call — I'll set it up with you in person.</p>
     </section>
 
   </div>
 </main>
 
 <script>
-const PROXY = 'https://voxhora-llm-proxy.fly.dev';
-
-async function checkCode() {
-  const code = document.getElementById('code').value.trim();
-  const err = document.getElementById('err');
-  err.style.display = 'none';
-  if (!code) return;
-  const btn = document.getElementById('openbtn');
-  btn.disabled = true; btn.textContent = '…';
-  try {
-    const r = await fetch(PROXY + '/v1/start-check', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ code })
-    });
-    const d = await r.json();
-    if (!r.ok) {
-      err.textContent = d.message || "That code didn't match — check it and try again.";
-      err.style.display = 'block';
-      return;
-    }
-    document.getElementById('welcome').textContent = 'Welcome, ' + d.first_name + ' 👋';
-    document.getElementById('macbtn').href = d.mac_download_url;
-    if (d.testflight_url) {
-      const tf = document.getElementById('tfbtn');
-      tf.href = d.testflight_url;
-      tf.classList.remove('hidden');
-    } else {
-      document.getElementById('tf-with').classList.add('hidden');
-      document.getElementById('tf-without').classList.remove('hidden');
-    }
-    document.getElementById('connectbtn').href = d.connect_url;
-    document.getElementById('expiry-note').textContent =
-      'Your code stays good for about ' + d.expires_in_hours + ' hours — if it lapses, just ask me for a fresh one.';
-    document.getElementById('gate').classList.add('hidden');
-    document.getElementById('unlocked').classList.remove('hidden');
-    window.scrollTo(0, 0);
-  } catch (e) {
-    err.textContent = "Couldn't reach Voxhora to check the code — check your internet and try again.";
-    err.style.display = 'block';
-  } finally {
-    btn.disabled = false; btn.textContent = 'Open';
-  }
-}
-document.getElementById('code').addEventListener('keydown', e => { if (e.key === 'Enter') checkCode(); });
-
-async function copyCode() {
-  const code = document.getElementById('code').value.trim();
-  const btn = document.getElementById('copybtn');
-  try {
-    await navigator.clipboard.writeText(code);
-    btn.textContent = 'Copied ✓';
-  } catch (e) {
-    btn.textContent = code;   /* clipboard blocked — show it to copy by hand */
-  }
-}
-
-/* 2026-08-09 — posts to Voxhora's server, exactly like request-access.html.
-   This page is the one the HOMEPAGE links to, so it is the form nearly every
-   visitor actually reaches; request-access.html is the quieter door. It used
-   to build a `mailto:` and hand the request to the visitor's mail app, which
-   opens Mail.app on a Mac with no account configured and asks them to add
-   one — the request never left their machine. Verified broken twice: once by
-   an outside tester, once by Patrick himself from this very page.
-   Keep this handler and request-access.html's in step. */
+/* 2026-08-09 — posts to Voxhora's server (never mailto: — that opened Mail.app
+   on machines with no account configured and the request silently died).
+   2026-08-11 — this is now the page's ONLY job. */
 async function composeRequest(event) {
   event.preventDefault();
   const name = document.getElementById('name').value.trim();
@@ -259,7 +93,7 @@ async function composeRequest(event) {
       body: JSON.stringify({ name: name, email: email, practice: 'via voxhora.app/start' })
     });
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    say("Thank you — your request is in. Patrick will email you a setup code, usually within a day.", true);
+    say("Thank you — your request is in. Patrick will email you everything you need, usually within a day.", true);
     event.target.reset();
   } catch (e) {
     say('Something went wrong sending that. Please email patrick@patrickfagerberg.com directly with your name and the email you use on your iPhone.', false);

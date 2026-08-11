@@ -16,7 +16,8 @@ This repo now serves Phase 2 of the [Distribution and Public-Launch Plan](https:
 |---|---|
 | `index.html` | Landing page with motto + value props |
 | `download.html` | Mac DMG download + install instructions (links to voxhora-mac GitHub Releases) |
-| `request-access.html` | TestFlight invite request form (mailto: based; Phase 3 swaps for Cloudflare Worker + ASC API) |
+| `start.html` | The one front door: request-access form posting to the proxy. The welcome email (built by voxhora-llm-proxy) carries the whole onboarding — code, DMG link, TestFlight public link |
+| `request-access.html` | Retired 2026-08-11 — meta-refresh to /start.html (printed QR handouts encode this URL) |
 | `setup.html` | First-install walkthrough per platform |
 | `whats-coming.html` | Roadmap + release cadence + contact |
 | `privacy.html` | Privacy policy (beta version) |

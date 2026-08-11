@@ -3,155 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Request access — Voxhora</title>
-  <meta name="description" content="Request access to Voxhora. Once approved, we email you everything: the Mac download, your iPhone/iPad/Apple Watch invite, and a one-tap link that turns on Voxhora AI.">
+  <title>Get started — Voxhora</title>
+  <!-- 2026-08-11: retired. This page's "What happens next" copy described a
+       flow that no longer existed, and the printed QR handouts encode this
+       URL — so it lives on only as a redirect to the one front door. -->
+  <meta http-equiv="refresh" content="0; url=/start.html">
+  <link rel="canonical" href="https://voxhora.app/start.html">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Voxhora">
-  <meta property="og:title" content="Request access — Voxhora">
-  <meta property="og:description" content="Request access to Voxhora. Once approved, we email you everything: the Mac download, your iPhone/iPad/Apple Watch invite, and a one-tap link that turns on Voxhora AI.">
-  <meta property="og:url" content="https://voxhora.app/request-access.html">
-  <meta property="og:image" content="https://voxhora.app/voxhora-social-card.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Request access — Voxhora">
-  <meta name="twitter:description" content="Request access to Voxhora. Once approved, we email you everything: the Mac download, your iPhone/iPad/Apple Watch invite, and a one-tap link that turns on Voxhora AI.">
-  <meta name="twitter:image" content="https://voxhora.app/voxhora-social-card.png">
 </head>
 <body>
-
-<header class="site-header">
-  <div class="wrap">
-    <a href="/" class="brand">
-      <img src="voxhora-logo.png" class="v-mark" alt="Voxhora">
-      <span class="v-word">Voxhora</span>
-    </a>
-    <nav class="site-nav">
-      <a href="/request-access.html" class="active">Request access</a>
-            <a href="/whats-coming.html">Updates</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <div class="wrap">
-
-    <h1>Request access</h1>
-    <p class="tight mute">Voxhora is invite-only during the beta. Tell us who you are and, once approved, Patrick sends you a short <strong>access code</strong>. Take it to <a href="/start.html"><strong>voxhora.app/start</strong></a> — that one page walks you through everything: Mac, iPhone, iPad, Apple Watch, and your Voxhora AI. Approvals are manual, typically same-day.</p>
-
-    <form class="signup" id="access-form" onsubmit="return composeRequest(event)">
-      <div class="form-row">
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Doe">
-      </div>
-
-      <div class="form-row">
-        <label for="email">Email <span class="hint">— must be the Apple ID you use on your iPhone</span></label>
-        <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
-      </div>
-
-      <div class="form-row">
-        <label for="bar">State Bar number <span class="hint">— optional but helpful</span></label>
-        <input type="text" id="bar" name="bar" autocomplete="off" placeholder="e.g., Texas Bar #00000000">
-      </div>
-
-      <div class="form-row">
-        <label for="practice">Practice area &amp; jurisdiction <span class="hint">— optional</span></label>
-        <input type="text" id="practice" name="practice" autocomplete="off" placeholder="e.g., criminal defense, Travis County">
-      </div>
-
-      <div class="form-row">
-        <label for="note">Anything else? <span class="hint">— optional</span></label>
-        <textarea id="note" name="note" placeholder="How did you hear about Voxhora? Any specific workflow you're hoping it solves?"></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-primary" style="width:100%; padding: 16px;">Send request</button>
-      <p id="req-status" style="display:none; margin-top:14px; font-size:14.5px; font-weight:600;"></p>
-    </form>
-
-    <p class="mute" style="margin-top: 24px; font-size: 14px;">Your request goes straight to Patrick — nothing opens on your computer, and you don't need email set up on this device. Prefer to write instead? Email <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> with your name and the Apple ID email you use on your iPhone.</p>
-
-    <h2>What happens next</h2>
-    <ol>
-      <li>We review your request — usually same-day.</li>
-      <li>You get one welcome email with everything: the <strong>Mac download</strong>, your <strong>TestFlight</strong> invite for iPhone/iPad/Apple Watch, and a <strong>one-tap link</strong> that turns on Voxhora AI (you never type a key).</li>
-      <li>Once your code arrives, go to <a href="/start.html"><strong>voxhora.app/start</strong></a> — enter it there and your install steps appear, in order, for every device.</li>
-      <li>Sign in on each device with the same Apple ID — your clients, calendar, and billing sync everywhere automatically.</li>
-    </ol>
-
-    <h2>Why TestFlight for the mobile apps</h2>
-    <p>The iPhone, iPad, and Apple Watch apps are delivered through TestFlight, Apple's official app-distribution program — free, secure, and bundled with iCloud. You install Apple's TestFlight app once, accept your invite, and Voxhora installs and auto-updates from there. (The Mac app installs directly from the download link in your welcome email.)</p>
-
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div>© 2026 Voxhora</div>
-    <nav>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="mailto:patrick@patrickfagerberg.com">Contact</a>
-    </nav>
-  </div>
-</footer>
-
-<script>
-// 2026-08-09 — this used to build a `mailto:` and hand the request to the
-// VISITOR'S mail app. A real prospect tried it: he reads mail in Gmail, so
-// macOS opened Mail.app, found no account configured, and asked him to add
-// one. His request never left his machine and never reached Patrick. Anyone
-// using webmail hits the same wall, which is most people — and mailto had
-// already burned this project once by silently truncating long bodies and
-// sending blank invites.
-//
-// The form now posts straight to Voxhora's server, which does not depend on
-// anything being installed or configured on the visitor's computer. The
-// mailto link below the form stays as a visible fallback, where it belongs:
-// an option, not the mechanism.
-async function composeRequest(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const bar = document.getElementById('bar').value.trim();
-  const practice = document.getElementById('practice').value.trim();
-  const note = document.getElementById('note').value.trim();
-  const btn = document.querySelector('#access-form button[type="submit"], #access-form .btn');
-  const status = document.getElementById('req-status');
-
-  const say = (msg, ok) => {
-    if (!status) { alert(msg); return; }
-    status.textContent = msg;
-    status.style.display = 'block';
-    status.style.color = ok ? '#2e7d4f' : '#b02a32';
-  };
-
-  if (!name || email.indexOf('@') === -1) {
-    say('Please enter your name and a valid email address.', false);
-    return false;
-  }
-
-  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
-  try {
-    const r = await fetch('https://voxhora-llm-proxy.fly.dev/v1/request-access', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ name, email, bar, practice, note })
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    say("Thank you — your request is in. Patrick will email you a setup code, usually within a day.", true);
-    document.getElementById('access-form').reset();
-  } catch (e) {
-    // Never leave someone staring at a dead button. Tell them the one thing
-    // that always works.
-    say('Something went wrong sending that. Please email patrick@patrickfagerberg.com directly with your name and the email you use on your iPhone.', false);
-  } finally {
-    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send'; }
-  }
-  return false;
-}
-</script>
-
+  <p style="font-family: -apple-system, sans-serif; padding: 40px 20px;">
+    Taking you to <a href="/start.html">voxhora.app/start</a>…
+  </p>
 </body>
 </html>
