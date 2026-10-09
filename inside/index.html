@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
 <meta name="description" content="A trip through the inside of Voxhora.">
 <link rel="icon" href="/favicon-32.png">
 <meta charset="utf-8">
@@ -416,6 +415,13 @@ async function boot(){
   resize();
   try{ await document.fonts.load('700 100px "Bodoni Moda"'); await document.fonts.ready; }catch(e){}
   ready=true; fill(0); retarget(); requestAnimationFrame(frame);
+  // Arrived from the voxhora.app homepage Play panel (/inside/#play): start
+  // right away when the browser allows sound; otherwise the big Play waits.
+  if(location.hash==='#play'){
+    try{ music.volume=0; const p=music.play();
+      if(p&&p.then) p.then(()=>{ music.pause(); if(!auto) toggleAuto(); }).catch(()=>{});
+    }catch(e){}
+  }
 }
 boot();
 })();
