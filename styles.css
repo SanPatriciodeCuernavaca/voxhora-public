@@ -540,3 +540,10 @@ footer.site-footer nav a:hover { color: var(--vox-ink); }
 @keyframes film-pulse{0%,100%{box-shadow:0 0 0 8px rgba(201,164,106,.18)}50%{box-shadow:0 0 0 14px rgba(201,164,106,.08)}}
 @media (max-width:620px){.film{aspect-ratio:auto;min-height:300px}.film-copy{max-width:calc(100% - 36px);top:auto;bottom:22px;transform:none}.film-art{opacity:.75}.film-word{display:none}}
 @media (prefers-reduced-motion:reduce){.film,.film-btn{transition:none;animation:none}}
+
+/* Film overlay: the homepage Play panel opens the film over the page (2026-10-08) */
+.film-overlay{position:fixed;inset:0;z-index:9999;background:#05070d}
+.film-overlay iframe{display:block;width:100%;height:100%;border:0}
+.film-close{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(201,168,106,.6);background:rgba(5,7,13,.75);color:#e8d9b5;font-size:26px;line-height:1;cursor:pointer}
+.film-close:hover,.film-close:focus-visible{background:rgba(201,168,106,.25);outline:none}

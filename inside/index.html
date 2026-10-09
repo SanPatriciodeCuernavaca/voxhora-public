@@ -332,7 +332,12 @@ function go(i){
 $('next').onclick=()=>{ if(!started) startMusic(); go(cur+1); }; $('prev').onclick=()=>go(cur-1);
 // MUSIC — "Clockwork Courts". Browsers only allow sound after a click or key,
 // so it starts with Begin / Autoplay / any travel key, fades in, and loops.
-const music=$('music'); let musicOn=true, started=false;
+// Opened from the voxhora.app homepage Play panel (/inside/#embed inside a
+// full-screen frame): the homepage already started the music in the viewer's
+// own tap, which is the only way Safari allows sound. Use that player.
+const EMBED = location.hash==='#embed';
+const music=(()=>{ try{ const p=EMBED&&window.parent!==window&&window.parent.document.getElementById('filmMusic'); if(p){ const own=$('music'); own.preload='none'; own.removeAttribute('src'); return p; } }catch(e){} return $('music'); })();
+let musicOn=true, started=false;
 let fadeTimer=null;
 function fadeTo(v,ms){ clearInterval(fadeTimer); const s=music.volume, t0=performance.now();
   fadeTimer=setInterval(()=>{ const k=Math.max(0,Math.min(1,(performance.now()-t0)/ms)); music.volume=Math.max(0,Math.min(1,s+(v-s)*k)); if(k>=1){ clearInterval(fadeTimer); if(v===0){ ourPause=true; music.pause(); } } },50); }
@@ -432,6 +437,7 @@ async function boot(){
   ready=true; fill(0); retarget(); requestAnimationFrame(frame);
   // Arrived from the voxhora.app homepage Play panel (/inside/#play): start
   // right away when the browser allows sound; otherwise the big Play waits.
+  if(EMBED){ if(!auto) toggleAuto(); try{ window.focus(); }catch(e){} return; }
   if(location.hash==='#play'){
     // Browsers (Safari especially) block sound on a page that has not been
     // tapped yet. Try; if blocked, cover the screen with one big tap target.

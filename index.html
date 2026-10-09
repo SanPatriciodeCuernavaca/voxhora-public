@@ -40,7 +40,7 @@
     <section class="hero">
       <h1>Voxhora</h1>
       <p class="motto">Your voice away from the office.<br><span class="motto-soft">Informed conversations and billing at your fingertips.</span></p>
-      <a class="film" href="/inside/?v=81762c41#play" aria-label="Play Inside Voxhora, a five-minute film with sound">
+      <a class="film" href="/inside/?v=7bef59ee#play" aria-label="Play Inside Voxhora, a five-minute film with sound">
         <svg class="film-art" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <g fill="none" stroke="#9fb8e0" stroke-opacity=".26" stroke-width=".8">
             <ellipse cx="500" cy="160" rx="60" ry="40"/><ellipse cx="500" cy="160" rx="125" ry="82"/><ellipse cx="500" cy="160" rx="200" ry="130"/><ellipse cx="500" cy="160" rx="285" ry="182"/><ellipse cx="500" cy="160" rx="380" ry="240"/>
@@ -227,5 +227,37 @@
   </div>
 </footer>
 
+<!-- Film panel: open "Inside Voxhora" over this page and start the music in
+     this same tap (Safari only allows sound from a tap on the page that plays it). -->
+<audio id="filmMusic" src="/inside/soundtrack.mp3" preload="none" loop></audio>
+<script>
+(function(){
+  var a=document.querySelector('a.film'); if(!a) return;
+  a.addEventListener('click',function(e){
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault();
+    var m=document.getElementById('filmMusic');
+    try{ m.volume=0.05; var p=m.play(); if(p&&p.catch) p.catch(function(){}); }catch(_){}
+    var ov=document.createElement('div'); ov.className='film-overlay';
+    var f=document.createElement('iframe');
+    f.src=a.getAttribute('href').replace('#play','#embed');
+    f.title='Inside Voxhora'; f.setAttribute('allow','autoplay; fullscreen');
+    f.onload=function(){ try{ f.contentWindow.focus(); }catch(_){} };
+    var x=document.createElement('button'); x.className='film-close'; x.type='button';
+    x.setAttribute('aria-label','Close the film'); x.textContent='\u00d7';
+    ov.appendChild(f); ov.appendChild(x); document.body.appendChild(ov);
+    document.documentElement.style.overflow='hidden';
+    try{ var r=ov.requestFullscreen&&ov.requestFullscreen(); if(r&&r.catch) r.catch(function(){}); }catch(_){}
+    function close(){
+      try{ m.pause(); m.currentTime=0; }catch(_){}
+      ov.remove(); document.documentElement.style.overflow='';
+      if(document.fullscreenElement){ try{ document.exitFullscreen(); }catch(_){} }
+      document.removeEventListener('keydown',esc); a.focus();
+    }
+    function esc(ev){ if(ev.key==='Escape'&&!document.fullscreenElement) close(); }
+    x.addEventListener('click',close); document.addEventListener('keydown',esc);
+  });
+})();
+</script>
 </body>
 </html>
