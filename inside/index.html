@@ -335,8 +335,13 @@ $('next').onclick=()=>{ if(!started) startMusic(); go(cur+1); }; $('prev').oncli
 const music=$('music'); let musicOn=true, started=false;
 let fadeTimer=null;
 function fadeTo(v,ms){ clearInterval(fadeTimer); const s=music.volume, t0=performance.now();
-  fadeTimer=setInterval(()=>{ const k=Math.max(0,Math.min(1,(performance.now()-t0)/ms)); music.volume=Math.max(0,Math.min(1,s+(v-s)*k)); if(k>=1){ clearInterval(fadeTimer); if(v===0) music.pause(); } },50); }
-function startMusic(force){ if(force||!started){ musicOn=true; $('mute').hidden=false; $('mute').textContent='Mute'; $('mute').setAttribute('aria-pressed','false'); } if(!musicOn) return; if(music.paused){ music.volume=0; const p=music.play(); if(p&&p.catch) p.catch(()=>{ const g=$('tapgate'); if(g){ g.hidden=false; g.focus(); } }); } fadeTo(0.85,2500); started=true; }
+  fadeTimer=setInterval(()=>{ const k=Math.max(0,Math.min(1,(performance.now()-t0)/ms)); music.volume=Math.max(0,Math.min(1,s+(v-s)*k)); if(k>=1){ clearInterval(fadeTimer); if(v===0){ ourPause=true; music.pause(); } } },50); }
+let ourPause=false;
+// Safari lets silent music start without a tap, then PAUSES it the moment it
+// turns audible (Patrick 10-08: "starts then mutes itself"). Any pause we did
+// not ask for while the film should have sound puts up the tap-to-start cover.
+music.addEventListener('pause',()=>{ if(ourPause){ ourPause=false; return; } if(musicOn&&started&&!music.ended){ const g=$('tapgate'); if(g){ g.hidden=false; g.focus(); } } });
+function startMusic(force){ if(force||!started){ musicOn=true; $('mute').hidden=false; $('mute').textContent='Mute'; $('mute').setAttribute('aria-pressed','false'); } if(!musicOn) return; if(music.paused){ music.volume=0.05; const p=music.play(); if(p&&p.catch) p.catch(()=>{ const g=$('tapgate'); if(g){ g.hidden=false; g.focus(); } }); } fadeTo(0.85,2500); started=true; }
 // The film always starts WITH sound; once it is playing the viewer can only
 // mute / unmute it (Patrick 2026-10-08). The Mute button appears on start.
 function setMusic(on){ musicOn=on; $('mute').textContent=on?'Mute':'Unmute'; $('mute').setAttribute('aria-pressed',String(!on)); if(on) startMusic(); else fadeTo(0,700); }
@@ -435,8 +440,8 @@ async function boot(){
     // If the viewer already pressed Play while the page was loading, leave the
     // music alone: this test used to silence and pause it (Patrick 10-08).
     if(started||auto) return;
-    try{ music.volume=0; const p=music.play();
-      if(p&&p.then) p.then(()=>{ if(started||auto) return; music.pause(); go2(); }).catch(()=>{ if(!started&&!auto){ gate.hidden=false; gate.focus(); } });
+    try{ music.volume=0.05; const p=music.play();
+      if(p&&p.then) p.then(()=>{ if(started||auto) return; go2(); }).catch(()=>{ if(!started&&!auto){ gate.hidden=false; gate.focus(); } });
       else gate.hidden=false;
     }catch(e){ gate.hidden=false; }
   }
