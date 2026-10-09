@@ -24,6 +24,11 @@ html,body{height:100%;margin:0;background:var(--void);color:var(--cream);overflo
 body{font-family:var(--body);-webkit-font-smoothing:antialiased}
 canvas#sky{position:fixed;inset:0;width:100%;height:100%;display:block}
 .vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 63% 48%,transparent 40%,rgba(6,11,21,.7) 100%),linear-gradient(90deg,rgba(6,11,21,.92) 0%,rgba(6,11,21,.78) 30%,rgba(6,11,21,0) 48%)}
+.tapgate{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:0;background:rgba(6,11,21,.72);color:var(--cream);cursor:pointer;padding:0}
+.tapgate:hover,.tapgate:focus-visible{background:rgba(6,11,21,.62);color:var(--cream)}
+.tapgate-btn{width:110px;height:110px;border-radius:50%;background:var(--gold);color:var(--void);font-size:40px;display:flex;align-items:center;justify-content:center;padding-left:8px;box-shadow:0 0 0 14px rgba(201,164,106,.18)}
+.tapgate-label{font:500 clamp(30px,5vw,46px)/1 var(--display)}
+.tapgate-sub{font:500 13px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 @media (max-width:760px){.vignette{background:radial-gradient(ellipse at 50% 32%,transparent 35%,rgba(6,11,21,.7) 100%),linear-gradient(0deg,rgba(6,11,21,.95) 0%,rgba(6,11,21,.8) 45%,rgba(6,11,21,0) 62%)}}
 .panel{position:fixed;left:clamp(16px,4vw,56px);top:50%;transform:translateY(-50%);width:min(440px,calc(100vw - 32px));display:grid;gap:14px;z-index:3;transition:opacity .6s ease,transform .6s ease}
 .panel.out{opacity:0;transform:translateY(calc(-50% + 14px))}
@@ -68,6 +73,7 @@ button.play{font-size:17px;padding:18px 34px;letter-spacing:.2em}
 <audio id="music" src="soundtrack.mp3" preload="auto" loop></audio>
 <canvas id="sky" aria-hidden="true"></canvas>
 <div class="vignette"></div>
+<button id="tapgate" class="tapgate" hidden aria-label="Start Inside Voxhora with sound"><span class="tapgate-btn" aria-hidden="true">&#9654;</span><span class="tapgate-label">Tap to start</span><span class="tapgate-sub">with sound</span></button>
 <section class="panel" id="panel" aria-live="polite">
   <div class="eyebrow" id="eyebrow"><span class="rule"></span><span id="eyetext">A trip through the code</span></div>
   <h1 id="title">Inside <em>Voxhora</em></h1>
@@ -418,9 +424,15 @@ async function boot(){
   // Arrived from the voxhora.app homepage Play panel (/inside/#play): start
   // right away when the browser allows sound; otherwise the big Play waits.
   if(location.hash==='#play'){
+    // Browsers (Safari especially) block sound on a page that has not been
+    // tapped yet. Try; if blocked, cover the screen with one big tap target.
+    const gate=$('tapgate');
+    const go2=()=>{ gate.hidden=true; if(!auto) toggleAuto(); };
     try{ music.volume=0; const p=music.play();
-      if(p&&p.then) p.then(()=>{ music.pause(); if(!auto) toggleAuto(); }).catch(()=>{});
-    }catch(e){}
+      if(p&&p.then) p.then(()=>{ music.pause(); go2(); }).catch(()=>{ gate.hidden=false; gate.focus(); });
+      else gate.hidden=false;
+    }catch(e){ gate.hidden=false; }
+    gate.addEventListener('click',go2);
   }
 }
 boot();
