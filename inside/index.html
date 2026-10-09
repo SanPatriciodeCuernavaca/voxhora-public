@@ -430,8 +430,11 @@ async function boot(){
     // tapped yet. Try; if blocked, cover the screen with one big tap target.
     const gate=$('tapgate');
     const go2=()=>{ gate.hidden=true; if(!auto) toggleAuto(); };
+    // If the viewer already pressed Play while the page was loading, leave the
+    // music alone: this test used to silence and pause it (Patrick 10-08).
+    if(started||auto) return;
     try{ music.volume=0; const p=music.play();
-      if(p&&p.then) p.then(()=>{ music.pause(); go2(); }).catch(()=>{ gate.hidden=false; gate.focus(); });
+      if(p&&p.then) p.then(()=>{ if(started||auto) return; music.pause(); go2(); }).catch(()=>{ if(!started&&!auto){ gate.hidden=false; gate.focus(); } });
       else gate.hidden=false;
     }catch(e){ gate.hidden=false; }
     gate.addEventListener('click',go2);
