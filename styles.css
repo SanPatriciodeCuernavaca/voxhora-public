@@ -547,3 +547,16 @@ footer.site-footer nav a:hover { color: var(--vox-ink); }
 .film-close{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;
   border:1px solid rgba(201,168,106,.6);background:rgba(5,7,13,.75);color:#e8d9b5;font-size:26px;line-height:1;cursor:pointer}
 .film-close:hover,.film-close:focus-visible{background:rgba(201,168,106,.25);outline:none}
+
+/* "Voxhora in action" film card (2026-10-12) — sits under the Inside Voxhora panel */
+.reel{position:relative;display:block;margin:0 0 26px;border-radius:14px;overflow:hidden;background:#060b15;border:1px solid var(--vox-gold);aspect-ratio:16/7.2;min-height:240px;color:#f4f0e6;text-decoration:none;box-shadow:0 18px 40px -18px rgba(6,11,21,.55);transition:transform .25s ease,box-shadow .25s ease}
+.reel:hover,.reel:focus-visible{transform:translateY(-2px);box-shadow:0 24px 50px -18px rgba(6,11,21,.7);outline:none}
+.reel:focus-visible{box-shadow:0 0 0 3px var(--vox-gold-warm),0 24px 50px -18px rgba(6,11,21,.7)}
+.reel-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:.95}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,11,21,.94) 0%,rgba(6,11,21,.7) 40%,rgba(6,11,21,0) 62%)}
+.reel-copy{position:absolute;z-index:1;left:clamp(18px,4%,36px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;max-width:min(340px,44%)}
+.reel-title{font:500 clamp(28px,4.4vw,42px)/1.02 Didot,"Bodoni 72",Georgia,serif;color:#f4f0e6}
+.reel-title em{color:#ecd3a1}
+.reel:hover .film-btn{background:#ecd3a1}
+@media (max-width:620px){.reel{aspect-ratio:auto;min-height:300px}.reel-copy{max-width:calc(100% - 36px);top:auto;bottom:22px;transform:none}.reel::after{background:linear-gradient(0deg,rgba(6,11,21,.96) 0%,rgba(6,11,21,.86) 62%,rgba(6,11,21,.25) 100%)}.reel-art{object-position:50% 20%}}
+@media (prefers-reduced-motion:reduce){.reel{transition:none}}
