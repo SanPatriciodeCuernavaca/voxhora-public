@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Get started — Voxhora</title>
-  <meta name="description" content="Request access to Voxhora. Your welcome email carries everything — code, links, and every step.">
+  <title>Contact — Voxhora</title>
+  <meta name="description" content="Voxhora is in private preview — email Patrick for more information.">
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Voxhora">
-  <meta property="og:title" content="Get started — Voxhora">
-  <meta property="og:description" content="Request access to Voxhora — everything you need arrives in one email.">
+  <meta property="og:title" content="Contact — Voxhora">
+  <meta property="og:description" content="Voxhora is in private preview — email Patrick for more information.">
   <meta property="og:url" content="https://voxhora.app/start.html">
   <meta property="og:image" content="https://voxhora.app/voxhora-social-card.png">
 </head>
@@ -24,7 +25,7 @@
       <span class="v-word">Voxhora</span>
     </a>
     <nav class="site-nav">
-      <a href="/start.html" class="active">Get started</a>
+      <a href="mailto:patrick@patrickfagerberg.com?subject=Voxhora">Contact</a>
             <a href="/whats-coming.html">Updates</a>
     </nav>
   </div>
@@ -40,20 +41,10 @@
          claimed the code. Now this page does exactly one thing: take a request.
          Everything else arrives in Patrick's email. -->
     <section>
-      <h1>Get started</h1>
-      <p class="tight mute" style="max-width: 520px;">Voxhora is invite-only right now. Leave your name and email below — I read every request myself and usually reply the same day with <strong>one email that has everything</strong>: your access code, both install links, and each step written out. — Patrick</p>
+      <h1>Contact</h1>
+      <p class="tight mute" style="max-width: 520px;">Voxhora is in private preview. For more information, email me at <a href="mailto:patrick@patrickfagerberg.com">patrick@patrickfagerberg.com</a> — I read every email myself. — Patrick</p>
 
-      <form class="signup" style="max-width: 420px;" onsubmit="return composeRequest(event)">
-        <div class="form-row">
-          <label for="name">Full name</label>
-          <input type="text" id="name" required autocomplete="name" placeholder="Jane Doe">
-        </div>
-        <div class="form-row">
-          <label for="email">Email <span class="hint">— the Apple ID you use on your iPhone</span></label>
-          <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
-        </div>
-        <button type="submit" class="btn btn-primary">Request access</button>
-      </form>
+      <p style="margin: 18px 0 8px;"><a class="btn btn-primary" href="mailto:patrick@patrickfagerberg.com?subject=Voxhora">Email Patrick</a></p>
 
       <p class="tight mute" style="margin-top: 26px; max-width: 520px;"><strong>Already have your welcome email?</strong> It has everything — your code goes into the Voxhora app on your Mac when it asks. Nothing to type on this page.</p>
 
@@ -63,46 +54,6 @@
   </div>
 </main>
 
-<script>
-/* 2026-08-09 — posts to Voxhora's server (never mailto: — that opened Mail.app
-   on machines with no account configured and the request silently died).
-   2026-08-11 — this is now the page's ONLY job. */
-async function composeRequest(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const btn = event.target.querySelector('button[type="submit"], .btn');
-  let status = document.getElementById('req-status');
-  if (!status) {
-    status = document.createElement('p');
-    status.id = 'req-status';
-    status.style.cssText = 'margin-top:14px;font-size:14.5px;font-weight:600;';
-    event.target.appendChild(status);
-  }
-  const say = (m, ok) => { status.textContent = m; status.style.color = ok ? '#2e7d4f' : '#b02a32'; };
-
-  if (!name || email.indexOf('@') === -1) {
-    say('Please enter your name and a valid email address.', false);
-    return false;
-  }
-  if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
-  try {
-    const r = await fetch('https://voxhora-llm-proxy.fly.dev/v1/request-access', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, practice: 'via voxhora.app/start' })
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    say("Thank you — your request is in. Patrick will email you everything you need, usually within a day.", true);
-    event.target.reset();
-  } catch (e) {
-    say('Something went wrong sending that. Please email patrick@patrickfagerberg.com directly with your name and the email you use on your iPhone.', false);
-  } finally {
-    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Request access'; }
-  }
-  return false;
-}
-</script>
 
 </body>
 </html>
